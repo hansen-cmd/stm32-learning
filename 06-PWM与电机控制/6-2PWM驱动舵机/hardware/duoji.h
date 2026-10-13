@@ -1,0 +1,8 @@
+#ifndef __DUOJI_H
+#define __DUOJI_H
+
+void duoji_Init(void);
+void duoji_SetAngle(float Angle);
+
+
+#endif

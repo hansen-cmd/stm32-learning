@@ -1,0 +1,3 @@
+Load "C:\\Users\\19284\\Desktop\\32练习\\4-4编码器接口测速实物版\\Objects\\led.axf" 
+Erase Done.Programming Done.Verify OK.Application running ...
+Flash Load finished at 21:39:56
