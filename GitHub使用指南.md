@@ -272,3 +272,43 @@ curl -v https://github.com
 ```
 
 能返回 `HTTP/2 200` 就说明通了，之后再 `git push` 就正常了。
+
+---
+
+## 十、让本地仓库和 GitHub 对齐（只需做一次）
+
+这个仓库最初是用 GitHub API 直接写入的，所以**你电脑上 `.git` 里的提交记录
+和 GitHub 上的不是同一条历史**。内容完全一样，但 git 认的是哈希，它会认为
+两者无关。
+
+**不处理的话**，你下次 `git push` 会报：
+
+```
+! [rejected] main -> main (non-fast-forward)
+```
+
+### 解决办法
+
+先按第九节修好网络，然后在这个文件夹里打开终端，执行：
+
+```
+git fetch origin
+git reset --hard origin/main
+```
+
+这两条的意思是：把 GitHub 上的最新记录拉回来，然后让本地**以 GitHub 为准**。
+
+> 因为两边文件内容完全一致，这个操作**不会丢任何代码**。
+> 如果你在这之后自己改过代码，请先备份再执行。
+
+### 验证
+
+```
+git log --oneline
+git status
+```
+
+`git status` 显示 `nothing to commit, working tree clean`，并且
+`git log` 的第一条和 GitHub 网页上看到的最新提交一致，就对齐了。
+
+之后就可以正常 `git add` → `git commit` → `git push` 了。
